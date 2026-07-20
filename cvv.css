@@ -240,12 +240,14 @@ body {
 }
 
 .intro-subtitulo {
-  font-size: 1.3rem;
+  font-size: clamp(0.95rem, 3.5vw, 1.3rem);
   font-weight: 400;
   color: var(--texto-suave);
   max-width: 900px;
   margin: 0 auto;
   min-height: 1em;
+  line-height: 1.65;
+  text-wrap: pretty;
 }
 
 .intro-subtitulo:empty::after {
@@ -270,6 +272,14 @@ body {
 
 .empresa-holding {
   color: var(--holding);
+}
+
+.empresa-etiqueta {
+  display: block;
+  font-size: clamp(0.85rem, 2.5vw, 1rem);
+  font-weight: 600;
+  color: var(--texto-suave);
+  margin-bottom: 0.35rem;
 }
 
 /* Grid de cards */
@@ -814,14 +824,134 @@ html.modo-oscuro .chat-enviar {
 }
 
 /* Responsive */
+@media (max-width: 768px) {
+  .cabecera {
+    flex-wrap: wrap;
+    gap: 0.85rem;
+    padding: 1rem 1.25rem;
+    padding-top: max(1rem, env(safe-area-inset-top));
+  }
+
+  .cabecera-acciones {
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    gap: 0.5rem;
+    flex: 1;
+    min-width: min(100%, 260px);
+  }
+
+  .boton-contacto {
+    padding: 0.5rem 0.85rem;
+    font-size: 0.9rem;
+  }
+
+  .interruptor-tema {
+    padding: 0.4rem 0.6rem;
+    font-size: 0.85rem;
+  }
+
+  .grid-cards {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .intro {
+    margin-bottom: 2rem;
+  }
+
+  .empresa {
+    margin-bottom: 1.75rem;
+  }
+
+  .habilidades,
+  .chat-reclutador {
+    margin-top: 3rem;
+  }
+
+  .habilidades-subtitulo {
+    margin-bottom: 1.75rem;
+    padding: 0 0.25rem;
+  }
+
+  .pastilla {
+    font-size: 0.85rem;
+    padding: 0.45rem 0.75rem;
+  }
+
+  .chat-caja {
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .chat-mensajes {
+    max-height: min(50vh, 320px);
+  }
+
+  .chat-burbuja {
+    max-width: 92%;
+    font-size: 0.9rem;
+  }
+}
+
 @media (max-width: 600px) {
+  html {
+    font-size: 15px;
+  }
+
   .contenedor {
     padding: 0 1rem 2rem;
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+
+  .cabecera {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.85rem 1rem;
+    padding-top: max(0.85rem, env(safe-area-inset-top));
+  }
+
+  .logo {
+    justify-content: center;
+  }
+
+  .cabecera-acciones {
+    justify-content: center;
+    min-width: 0;
+  }
+
+  .interruptor-tema-texto {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .interruptor-tema {
+    position: relative;
+  }
+
+  .intro-titulo {
+    padding: 0 0.25rem;
+  }
+
+  .card-contenido {
+    padding: 1rem;
+  }
+
+  .card-descripcion {
+    font-size: 0.95rem;
   }
 
   .pie-pagina {
     min-height: 260px;
     padding: 2rem 1rem;
+    padding-bottom: max(2rem, env(safe-area-inset-bottom));
   }
 
   .pie-contenido {
@@ -830,13 +960,19 @@ html.modo-oscuro .chat-enviar {
 
   .pie-contacto-lista {
     flex-direction: column;
-    align-items: center;
+    align-items: stretch;
+    gap: 0.75rem;
   }
 
   .pie-contacto-enlace {
     width: 100%;
-    max-width: 280px;
+    max-width: none;
     justify-content: center;
+    text-align: center;
+    flex-wrap: wrap;
+    word-break: break-word;
+    font-size: 0.9rem;
+    padding: 0.65rem 0.85rem;
   }
 
   .bichito {
@@ -844,12 +980,12 @@ html.modo-oscuro .chat-enviar {
     height: 18px;
   }
 
-  .cabecera {
-    padding: 1rem;
+  .decoracion-inferior {
+    height: 80px;
   }
 
-  .grid-cards {
-    gap: 1.5rem;
+  .jardin-pixel {
+    background-size: 280px 56px;
   }
 
   .chat-controles {
@@ -858,5 +994,22 @@ html.modo-oscuro .chat-enviar {
 
   .chat-enviar {
     width: 100%;
+  }
+
+  .chat-formulario {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 380px) {
+  .boton-contacto {
+    flex: 1 1 calc(50% - 0.25rem);
+    text-align: center;
+    min-width: 0;
+  }
+
+  .interruptor-tema {
+    flex: 1 1 100%;
+    justify-content: center;
   }
 }
